@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p style="text-align: center;font-size: large;font-weight: bold;">Adult Transition Organization Manager</p>
+  <ion-item (click)="openProgressPage()">
+    <div style="display: block">
+        <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [colors]="chartColors"
+          [options] ="barChartOptions"
+          [colors] ="chartColors"
+          (chartClick)="chartClicked($event)"></canvas>
+    </div>
+</ion-item>
+<p><b>To Do:</b> Customize your personal to do list to meet your transition goals.</p>
+<p><b>Progress:</b> View your progress on your transition goals.</p>
+</ion-content>

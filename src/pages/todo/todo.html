@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      To Do
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <div *ngFor="let category of todoCategories">
+            <ion-item no-lines class="item-category" [ngClass]="[category.style]">
+                <ion-label (click)="toggleGroup(category)" style="color:white;">
+                    {{category.title}}
+                </ion-label>        
+                <button *ngIf="isGroupShown(category)" ion-button clear color="light" item-end (click)="toggleEdit()">
+                    {{btnName}}
+                </button>
+            </ion-item>
+            <div *ngIf="isGroupShown(category)">
+                <ion-item-group reorder ="{{editEnabled}}" (ionItemReorder)="reorderItems($event, category)"> 
+                <ion-item-sliding *ngFor="let todo of category.todos">
+                <ion-item *ngIf="!todo.isDone" text-wrap>
+                    <ion-checkbox  [(ngModel)]="todo.isDone" (click)="updateTodo(todo, category)"></ion-checkbox>
+                    <ion-label [ngClass]="{'strike-completed': todo.isDone ,'general': category.title == 'General'}">{{todo.title}}
+                    <div  style="color: #b1afaf;font-size: x-small;text-align: left;" >
+                        <span *ngIf="todo.priority!=null && todo.priority!='NONE'" style="padding-right: 10%;">Priority: {{todo.priority}}</span>
+                        <span *ngIf="todo.dueBy!=null">Due: {{todo.dueBy | date: "MMM, dd, yyyy"}}</span>
+                    </div>
+                    </ion-label>
+                    <button ion-button clear icon-only item-end (click)="DisplayDetails(todo, category)">
+                        <ion-icon name="ios-information-circle-outline"></ion-icon>
+                    </button>
+                </ion-item>
+                <ion-item-options>
+                    <button ion-button color="danger" (click)="removeItem(todo, category)"><ion-icon name="trash"></ion-icon></button>
+                </ion-item-options>    
+                </ion-item-sliding>
+                </ion-item-group>    
+                <button ion-item detail-none (click)="openAddGoalModal(category)">
+                    <ion-label>
+                        <ion-icon name="md-add" style="padding-left: 2%;padding-right: 10%;"></ion-icon>
+                        Add Goal
+                    </ion-label>
+                </button>
+                 <ion-item-sliding *ngFor="let todo of category.todos">
+                    <ion-item *ngIf="todo.isDone" text-wrap>
+                    <ion-checkbox  [(ngModel)]="todo.isDone" (click)="updateTodo(todo, category)"></ion-checkbox>
+                    <ion-label [ngClass]="{'strike-completed': todo.isDone ,'general': category.title == 'General'}">{{todo.title}}</ion-label>
+                    <button ion-button clear icon-only item-end (click)="DisplayDetails(todo, category)">
+                        <ion-icon name="ios-information-circle-outline"></ion-icon>
+                    </button>
+                </ion-item>
+                <ion-item-options>
+                    <button ion-button color="danger" (click)="removeItem(todo, category)"><ion-icon name="trash"></ion-icon></button>
+                </ion-item-options> 
+                </ion-item-sliding>
+            </div>
+        </div>
+    </ion-list>
+</ion-content>

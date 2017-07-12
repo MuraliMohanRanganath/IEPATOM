@@ -1,0 +1,40 @@
+[
+    {
+        "category" : "General",
+        "todos" : [
+            {
+                "title" : "First Transition IEP age 14 (no later thatn 14.5 yrs)",
+                "isDone" : false,
+            },
+            {
+                "title" : "Write Transition goals in IEP",
+                "isDone" : false,
+            },
+            {
+                "title" : "Discuss and Plan for a timeline for High School",
+                "isDone" : false,
+            },
+        ]
+    },
+    {
+        "category" : "Work",
+        "todos" : [
+            {
+                "title" : "Vocational training built into IEP goals",
+                "isDone" : false,
+            },
+            {
+                "title" : "Explore Vocational options",
+                "isDone" : false,
+            },
+            {
+                "title" : "Explore Government assistance options",
+                "isDone" : false,
+            },
+            {
+                "title" : "Explore and apply for Social Security/SSI/etc",
+                "isDone" : false,
+            },
+        ]
+    }
+]

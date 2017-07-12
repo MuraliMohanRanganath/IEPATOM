@@ -1,0 +1,46 @@
+page-about {
+
+}
+
+.item-category {
+    border: none !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+ion-item.general {
+    background-color: #79b586;
+}
+
+ion-item.work {
+    background-color: #82c5bf;
+}
+
+ion-item.education {
+    background-color: #7da0cf;
+}
+
+ion-item.medical {
+    background-color: #b47ab1;
+}
+
+ion-item.homeAndLiving {
+    background-color: #e8808e;
+}
+
+ion-item.socialAndRecreation {
+    background-color: #f99876;
+}
+
+ion-item.parentOrGuardianship {
+    background-color: #fecd92;
+}
+
+.strike-completed {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.item-inner .item-inner ion-reorder {
+display: none;
+}

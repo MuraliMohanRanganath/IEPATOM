@@ -1,0 +1,68 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="isCreatePage">Add a new goal</ion-title>
+    <ion-title *ngIf="!isCreatePage && isEditDisabled">To Do details</ion-title>
+    <ion-title *ngIf="!isCreatePage && !isEditDisabled">Edit To Do</ion-title>
+    <ion-buttons end *ngIf="!isCreatePage && isEditDisabled">
+        <button ion-button clear (click)="editTodo()" color="light">Edit</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+<ion-content padding>
+    <ion-list no-lines>
+    <form [formGroup]="addTodoForm">
+        <ion-item>
+            <ion-label stacked>Title</ion-label>
+            <ion-textarea fz-elastic formControlName="todoTitle" type="text" [readonly]="isEditDisabled"></ion-textarea>
+        </ion-item>
+ 
+        <ion-item>
+            <ion-label stacked>Details</ion-label>
+            <ion-textarea fz-elastic formControlName="details" [readonly]="isEditDisabled"></ion-textarea>
+        </ion-item>
+ 
+        <ion-item *ngIf="!isEditDisabled">
+            <ion-label stacked>Priority</ion-label>
+            <ion-select formControlName="priority">
+             <ion-option [value]="priority" *ngFor="let priority of priorityValues">{{priority}}</ion-option>
+         </ion-select>
+        </ion-item>
+        <ion-item *ngIf="isEditDisabled">
+            <ion-label stacked>Priority</ion-label>
+            <ion-input formControlName="priority" type="text" [readonly]="true"></ion-input>
+        </ion-item>
+        <ion-item  *ngIf="!isEditDisabled">
+            <ion-label stacked>Due Date</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" max={{maximumYear}} min={{minimumYear}} formControlName="dueBy"></ion-datetime>
+        </ion-item>
+        <ion-item  *ngIf="isEditDisabled">
+            <ion-label stacked>Due Date</ion-label>
+            <ion-input type="text" value="{{toDo.dueBy | date: 'MM/dd/yyyy'}}" [readonly]="true"></ion-input>
+        </ion-item>
+        <ion-item  *ngIf="!isEditDisabled&&isCreatePage">
+         <ion-label stacked>Category</ion-label>
+         <ion-select formControlName="category">
+             <ion-option [value]="category" *ngFor="let category of categoryValues">{{category}}</ion-option>
+         </ion-select>
+        </ion-item>
+        <ion-item  *ngIf="isEditDisabled||!isCreatePage">
+         <ion-label stacked>Category</ion-label>
+            <ion-input formControlName="category" [readonly]="true"></ion-input>
+        </ion-item>
+    </form>
+</ion-list>
+    <ion-row *ngIf="isCreatePage || !isEditDisabled">
+        <ion-col>
+            <button ion-button full color="primary" (click)="cancel()">Cancel</button>        
+        </ion-col>
+        <ion-col>
+            <button ion-button full color="primary" (click)="save()">Save</button>
+        </ion-col>
+    </ion-row>
+    <ion-row *ngIf="isEditDisabled">
+        <button ion-button full color="primary" (click)="cancel()">OK</button>
+    </ion-row>
+</ion-content>

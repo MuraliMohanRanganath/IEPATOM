@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Progress
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-item>
+    <div style="display: block">
+        <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [colors]="chartColors"
+          [options] ="barChartOptions"
+          [colors] ="chartColors"
+          (chartClick)="chartClicked($event)"></canvas>
+    </div>
+</ion-item>
+<ion-item>
+    <div>
+        <chart [options]="lineChartOptions" (load)="saveInstance($event.context)"></chart>
+    </div>
+</ion-item>
+</ion-content>
